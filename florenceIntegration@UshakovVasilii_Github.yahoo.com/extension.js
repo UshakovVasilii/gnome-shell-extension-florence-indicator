@@ -43,11 +43,16 @@ const FlorenceIntegration = new Lang.Class({
     _init: function() {
         this.parent(St.Align.START);
 
-        let button = new St.Button({
-            child: new St.Icon({
-                gicon: Gio.icon_new_for_string(Me.path + '/icons/florence-integration-symbolic.svg'),
+        this._shownIcon = Gio.icon_new_for_string(Me.path + '/icons/florence-integration-shown-symbolic.svg');
+        this._hiddenIcon = Gio.icon_new_for_string(Me.path + '/icons/florence-integration-hidden-symbolic.svg');
+
+        this._appIcon = new St.Icon({
+                gicon: this._hiddenIcon,
                 style_class: 'system-status-icon'
-            })
+            });
+
+        let button = new St.Button({
+            child: this._appIcon
         });
 
         this._florenceProxy = new FlorenceKeyboardProxy(
@@ -62,13 +67,15 @@ const FlorenceIntegration = new Lang.Class({
             this._florenceProxy.toggleRemote();
         }));
 
-        this._florenceProxy.connectSignal("show", function(proxy) {
+        this._florenceProxy.connectSignal("show", Lang.bind(this, function(proxy) {
             global.log('FlorenceIntegration SHOW');
-        });
+            this._appIcon.gicon = this._shownIcon;
+        }));
 
-        this._florenceProxy.connectSignal("hide", function(proxy) {
+        this._florenceProxy.connectSignal("hide", Lang.bind(this, function(proxy) {
             global.log('FlorenceIntegration HIDE');
-        });
+            this._appIcon.gicon = this._hiddenIcon;
+        }));
 
         this.actor.add_actor(button);
     }
