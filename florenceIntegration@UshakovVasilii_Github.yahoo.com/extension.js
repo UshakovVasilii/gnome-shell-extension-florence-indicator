@@ -5,6 +5,7 @@ const Main = imports.ui.main;
 const Gio = imports.gi.Gio;
 const Shell = imports.gi.Shell;
 const GTop = imports.gi.GTop;
+const Util = imports.misc.util;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
@@ -64,16 +65,20 @@ const FlorenceIntegration = new Lang.Class({
         global.log('FlorenceIntegration PROXY:' + this._florenceProxy);
 
         button.connect('clicked', Lang.bind(this, function(){
-            this._florenceProxy.toggleRemote();
+            try {
+                this._florenceProxy.toggleSync();
+            } catch (ex) {
+                global.log(ex);
+                global.log('Try to start "florence"...');
+                Util.spawn(['florence']);
+            }
         }));
 
         this._florenceProxy.connectSignal("show", Lang.bind(this, function(proxy) {
-            global.log('FlorenceIntegration SHOW');
             this._appIcon.gicon = this._shownIcon;
         }));
 
         this._florenceProxy.connectSignal("hide", Lang.bind(this, function(proxy) {
-            global.log('FlorenceIntegration HIDE');
             this._appIcon.gicon = this._hiddenIcon;
         }));
 
