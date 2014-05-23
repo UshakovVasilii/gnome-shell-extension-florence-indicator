@@ -1,5 +1,5 @@
 #!/bin/sh
-NAME=florenceIntegration@UshakovVasilii_Github.yahoo.com
+NAME=florenceIndicator@UshakovVasilii_Github.yahoo.com
 cd $NAME
 zip -r $NAME.zip *
 cd ..

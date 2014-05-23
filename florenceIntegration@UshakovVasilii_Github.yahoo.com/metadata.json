@@ -1,7 +1,0 @@
-{
-    "shell-version": ["3.12"],
-    "uuid": "florenceIntegration@UshakovVasilii_Github.yahoo.com",
-    "name": "Florence Integration",
-    "description": "Florence integration with GNOME Shell",
-    "url": "https://github.com/UshakovVasilii/gnome-shell-extension-florence-integration"
-}
