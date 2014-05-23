@@ -1,2 +1,2 @@
-gnome-shell-extension-florence-integration
+florence-indicator
 ==========================================
