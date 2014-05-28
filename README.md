@@ -16,4 +16,4 @@ restart GNOME Shell (`Alt+F2`, `r`, `Enter`) and enable the extension through gn
 
 ### Installation from extensions.gnome.org
 
-// TODO
+https://extensions.gnome.org/extension/832/florence-indicator/
