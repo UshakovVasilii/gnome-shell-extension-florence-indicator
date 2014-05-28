@@ -46,6 +46,8 @@ const FlorenceIndicator = new Lang.Class({
             "/org/florence/Keyboard"
         );
 
+        this.connect('destroy', Lang.bind(this, this._onDestroy));
+
         button.connect('clicked', Lang.bind(this, this._toggle));
 
         this._florenceProxy.connectSignal("show", Lang.bind(this, function() {
@@ -89,6 +91,10 @@ const FlorenceIndicator = new Lang.Class({
         if (s == Clutter.KEY_space || s == Clutter.KEY_Return || s == Clutter.KEY_Down || s == Clutter.KEY_Up) {
             this._toggle();
         }
+    },
+
+    _onDestroy : function(){
+        this._florenceProxy.run_dispose();
     },
 
 });
