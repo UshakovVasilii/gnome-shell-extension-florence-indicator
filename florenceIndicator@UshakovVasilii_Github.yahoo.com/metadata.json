@@ -1,5 +1,5 @@
 {
-    "shell-version": ["3.12", "3.14", "3.16", "3.18"],
+    "shell-version": ["3.12", "3.14", "3.16", "3.18", "3.20"],
     "uuid": "florenceIndicator@UshakovVasilii_Github.yahoo.com",
     "name": "Florence Indicator",
     "description": "Florence Virtual Keyboard indicator for GNOME Shell. Alternative for standard tray icon",
